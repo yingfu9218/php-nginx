@@ -28,12 +28,9 @@ RUN cd ../ && rm -rf nginx-${NGINX_VERSION}
 
 RUN /usr/sbin/useradd nginx && mkdir -p /var/log/nginx && mkdir -p /var/tmp/nginx
 
-
 RUN apt-get install -y cron vim
 RUN apt-get install -y supervisor
 ADD ./start.sh /usr/local/bin/start.sh
 RUN chmod +x /usr/local/bin/start.sh
-
 EXPOSE 80
-
 CMD [ "/usr/local/bin/start.sh" ] 

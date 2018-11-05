@@ -19,7 +19,6 @@ RUN pecl install mongodb \
 
 RUN apt-get install -y libpcre3-dev libssl-dev
 
-
 ENV NGINX_VERSION 1.15.5
 
 RUN apt-get install -y wget &&wget http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz  && tar -zxvf nginx-${NGINX_VERSION}.tar.gz && rm -f nginx-${NGINX_VERSION}.tar.gz
@@ -28,7 +27,6 @@ RUN  cd nginx-${NGINX_VERSION} && ./configure  --prefix=/usr/local/nginx  --sbin
 RUN cd ../ && rm -rf nginx-${NGINX_VERSION}
 
 RUN /usr/sbin/useradd nginx && mkdir -p /var/log/nginx && mkdir -p /var/tmp/nginx
-
 
 
 RUN apt-get install -y cron vim

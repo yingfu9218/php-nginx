@@ -30,6 +30,10 @@ RUN /usr/sbin/useradd nginx && mkdir -p /var/log/nginx && mkdir -p /var/tmp/ngin
 
 RUN apt-get install -y cron vim
 RUN apt-get install -y supervisor
+
+
+ADD ./conf/nginx.conf /usr/local/nginx/conf/nginx.conf 
+
 ADD ./start.sh /usr/local/bin/start.sh
 RUN chmod +x /usr/local/bin/start.sh
 EXPOSE 80

@@ -32,9 +32,23 @@ RUN apt-get install -y cron vim
 RUN apt-get install -y supervisor
 
 
-ADD ./conf/nginx.conf /usr/local/nginx/conf/nginx.conf 
+ADD ./conf/nginx.conf /usr/local/nginx/conf/nginx.conf  
 
 ADD ./start.sh /usr/local/bin/start.sh
 RUN chmod +x /usr/local/bin/start.sh
 EXPOSE 80
+
+### 根据环变量修改 /usr/local/etc/php-fpm.d/www.conf配置文件
+#pm = dynamic
+ENV PM="dynamic"
+#pm.max_children
+ENV MAX_CHILDREN="30"
+#pm.start_servers
+ENV START_SERVERS="15"
+#pm.min_spare_servers
+ENV MIN_SPARE_SERVERS="11"
+#pm.max_spare_servers
+ENV MAX_SPARE_SERVERS="30"
+#pm.max_requests
+ENV MAX_REQUESTS="1024"
 CMD [ "/usr/local/bin/start.sh" ] 
